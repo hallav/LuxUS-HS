@@ -98,7 +98,7 @@ optional arguments:
 ```
 
 ## Running LuxUS-HS analysis
-LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files. The arguments for the script are
+LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files with specified file name identifier. The arguments for the script are
 ```
 usage: run_LuxUS_HS.py [-h] [-a ALGORITHM] [-p DIAGNOSTIC_PLOTS]
                        [-g N_GRADSAMPLES] [-e N_ELBOSAMPLES]
