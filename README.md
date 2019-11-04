@@ -18,7 +18,7 @@ LuxUS-HS is a tool for differential methylation analysis, which combines binomia
 - PyStan [3]
 - CmdStan [4] (for running ADVI)
 
-The versions used were: NumPy 1.14.5, SciPy 1.1.0, Matplotlib 2.2.2, PyStan 2.17.1.0, CmdStan 2.12.0. The tool has been tested in Linux environment.
+The versions used were: NumPy 1.17.0, SciPy 1.3.0, Matplotlib 3.1.1, PyStan 2.19.0.0, CmdStan 2.20.0. The tool has been tested in Linux environment.
 
 ## Simulating data from the LuxUS-HS model
 The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The arguments for the script are:
