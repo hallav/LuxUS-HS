@@ -199,6 +199,6 @@ The scripts for producing the results presented in *LuxUS-HS: spatial correlatio
 
 [7] Dolzhenko, E. and Smith, A. D. (2014) Using beta-binomial regression for high-precision differential methylation analysis in multifactor whole-genome bisulfite sequencing experiments. BMC bioinformatics, 15(1):215, 2014.
 
-[8] K. D. Hansen. (2016) bsseqData: Example whole genome bisulfite data for the bsseq package. 
+[8] Hansen, K. D. (2016) bsseqData: Example whole genome bisulfite data for the bsseq package. 
 
 [9] Halla-aho, V. and Lähdesmäki, H. (2019) LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states. 
