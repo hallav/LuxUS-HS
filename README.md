@@ -21,7 +21,7 @@ LuxUS-HS is a tool for differential methylation analysis, which combines binomia
 The versions used were: NumPy 1.14.5, SciPy 1.1.0, Matplotlib 2.2.2, PyStan 2.17.1.0, CmdStan 2.12.0. The tool has been tested in Linux environment.
 
 ## Simulating data from the LuxUS-HS model
-The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The argument for the script are:
+The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The arguments for the script are:
 
 ```
 usage: generate_data_from_LuxUS_HS.py [-h] -q READS -r REPLICATES -c
@@ -98,7 +98,7 @@ optional arguments:
 ```
 
 ## Running LuxUS-HS analysis
-LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand). The arguments for the script are
+LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files. The arguments for the script are
 ```
 usage: run_LuxUS_HS.py [-h] [-a ALGORITHM] [-p DIAGNOSTIC_PLOTS]
                        [-g N_GRADSAMPLES] [-e N_ELBOSAMPLES]
@@ -179,6 +179,10 @@ The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting fro
 
 The preanalysis step and its parameters are explained in detail in https://github.com/hallav/LuxUS
 
+## Producing results for *LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states*
+
+The scripts for producing the results presented in *LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states* by Halla-aho and Lähdesmäki [9] are available in this repository. The scripts for running BiSeq [6] and RADMeth [7] tools for simulation comparisons and scripts for preparing the colon cancer data set [8] for LuxUS-HS analysis are also included.
+
 ## References
 
 [1] Äijö, T., Yue, X., Rao, A., Lähdesmäki, H (2016) LuxGLM: a probabilistic covariate model for quantification of DNA methylation modifications with complex experimental designs. *Bioinformatics*, 32(17), i511-i519.
@@ -190,3 +194,11 @@ The preanalysis step and its parameters are explained in detail in https://githu
 [4] Stan Development Team (2017) PyStan: the Python interface to Stan, Version 2.16.0.0.   http://mc-stan.org
 
 [5] Halla-aho, V. and Lähdesmäki, H. (2019) LuxUS: Detecting differential DNA methylation using generalized linear mixed model with spatial correlation structure. doi: https://doi.org/10.1101/536722
+
+[6] Hebestreit, K., Dugas, M. and Klein, H-U. (2013) Detection of significantly differentially methylated regions in targeted bisulfite sequencing data. Bioinformatics, 29(13):1647–1653
+
+[7] Dolzhenko, E. and Smith, A. D. (2014) Using beta-binomial regression for high-precision differential methylation analysis in multifactor whole-genome bisulfite sequencing experiments. BMC bioinformatics, 15(1):215, 2014.
+
+[8] K. D. Hansen. (2016) bsseqData: Example whole genome bisulfite data for the bsseq package. 
+
+[9] Halla-aho, V. and Lähdesmäki, H. (2019) LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states. 
