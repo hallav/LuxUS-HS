@@ -1,6 +1,6 @@
 # LuxUS-HS
 
-LuxUS-HS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure includes indicator variables, which tell whether a cytosine (in the genomic window of interest) follows the same spatial correlation pattern as its neighboring cytosines. The statistical testing is done for each cytosine separately. The observation model and the statistical testing are done as in LuxGLM [1]. The preprocessing step used for LuxUS-HS is the same as in LuxUS [5].  
+LuxUS-HS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure includes indicator variables, which tell whether a cytosine (in the genomic window of interest) follows the same spatial correlation pattern as its neighboring cytosines. The statistical testing is done for each cytosine separately. The observation model and the statistical testing method are the same as in LuxGLM [1]. The preprocessing step used for LuxUS-HS is the same as in LuxUS [5].  
 
 ## Outline
 * Requirements
