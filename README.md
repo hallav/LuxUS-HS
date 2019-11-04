@@ -1,13 +1,24 @@
 # LuxUS-HS
 
-LuxUS-HS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure 
+LuxUS-HS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure includes indicator variables, which tell whether a cytosine (in the genomic window of interest) follows the same spatial correlation pattern as its neighboring cytosines. The statistical testing is done for each cytosine separately. The observation model and the statistical testing are done as in LuxGLM [1]. The preprocessing step used for LuxUS-HS is the same as in LuxUS [5].  
 
 ## Outline
 * Requirements
 * Simulating data from the LuxUS-HS model
 * Running LuxUS-HS analysis
 * LuxUS-HS analysis workflow
+* Producing results for *title*
 * References
+
+## Requirements
+- Python 3.6
+- NumPy
+- SciPy
+- Matplotlib
+- PyStan [3]
+- CmdStan [4] (for running ADVI)
+
+The versions used were: NumPy 1.14.5, SciPy 1.1.0, Matplotlib 2.2.2, PyStan 2.17.1.0, CmdStan 2.12.0. The tool has been tested in Linux environment.
 
 ## Simulating data from the LuxUS-HS model
 The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The argument for the script are:
@@ -87,6 +98,74 @@ optional arguments:
 ```
 
 ## Running LuxUS-HS analysis
+LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand). The arguments for the script are
+```
+usage: run_LuxUS_HS.py [-h] [-a ALGORITHM] [-p DIAGNOSTIC_PLOTS]
+                       [-g N_GRADSAMPLES] [-e N_ELBOSAMPLES]
+                       [-v N_OUTPUTSAMPLES_VI] [-m N_OUTPUTSAMPLES_HMC]
+                       [-c N_HMC_CHAINS] [-t TIMEFILE] -d INPUT_DATA -i
+                       INPUTFOLDER -o OUTPUTFOLDER -j OUTPUTFILE -x
+                       TEST_COVARIATE [-y TEST_COVARIATE2] [-w WINDOW_INDEX]
+                       [-b SIGMAB2] -k FILEIDENTIFIER
+
+Runs LuxUS HS model for the given input data and returns a BF for the whole
+window.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -a ALGORITHM, --algorithm ALGORITHM
+                        Give value 0 (use HMC, default) or 1 (use VI).
+  -p DIAGNOSTIC_PLOTS, --diagnostic_plots DIAGNOSTIC_PLOTS
+                        Give value 0 (do not plot sample diagnostics for HMC)
+                        or 1 (plot sample diagnostics for HMC). Default value
+                        is 0.
+  -g N_GRADSAMPLES, --N_gradsamples N_GRADSAMPLES
+                        Number of gradient samples used in VI. Default value
+                        10 is used if not specified.
+  -e N_ELBOSAMPLES, --N_elbosamples N_ELBOSAMPLES
+                        Number of ELBO samples used in VI. Default value 200
+                        is used if not specified.
+  -v N_OUTPUTSAMPLES_VI, --N_outputsamples_VI N_OUTPUTSAMPLES_VI
+                        Number of posterior samples used in VI. Default value
+                        2000 is used if not specified.
+  -m N_OUTPUTSAMPLES_HMC, --N_outputsamples_HMC N_OUTPUTSAMPLES_HMC
+                        Number of posterior samples per chain used in HMC (the
+                        burn-in will be removed from this sample number).
+                        Default value 1000 is used if not specified.
+  -c N_HMC_CHAINS, --N_HMC_chains N_HMC_CHAINS
+                        Number of chains in HMC sampling. Default value 4 is
+                        used if not specified.
+  -t TIMEFILE, --timeFile TIMEFILE
+                        File name (and path) for storing computation time. If
+                        no file name is given the computation times will not
+                        be stored into a file.
+  -d INPUT_DATA, --input_data INPUT_DATA
+                        Name of the data file with path.
+  -i INPUTFOLDER, --inputFolder INPUTFOLDER
+                        Folder where the input file is stored.
+  -o OUTPUTFOLDER, --outputFolder OUTPUTFOLDER
+                        Folder where to store the results.
+  -j OUTPUTFILE, --outputFile OUTPUTFILE
+                        File into which the BFs are written. Will be located
+                        in folder specified in -o.
+  -x TEST_COVARIATE, --test_covariate TEST_COVARIATE
+                        Covariate to be tested. Give index (in design matrix)
+                        starting from 0.
+  -y TEST_COVARIATE2, --test_covariate2 TEST_COVARIATE2
+                        Type 2 test: the covariate to be compared to the
+                        covariate defined by argument -x. If not provided,
+                        type 1 test will be performed. Give index (in design
+                        matrix) starting from 0.
+  -w WINDOW_INDEX, --window_index WINDOW_INDEX
+                        The index of the window being analysed. If value is
+                        not given the BF is saved without window index into
+                        the defined output file.
+  -b SIGMAB2, --sigmaB2 SIGMAB2
+                        Prior for sigmaB2, used in BF calculation. Default
+                        value 15 is used if not specified.
+  -k FILEIDENTIFIER, --fileIdentifier FILEIDENTIFIER
+                        File identifier for the d and theta mean files.
+```
 
 ## LuxUS-HS analysis workflow
 The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting from raw data) is following:
@@ -99,16 +178,6 @@ The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting fro
 * Investigation of estimated indicator variable d.
 
 The preanalysis step and its parameters are explained in detail in https://github.com/hallav/LuxUS
-
-## Requirements
-- Python 3.6
-- NumPy
-- SciPy
-- Matplotlib
-- PyStan [3]
-- CmdStan [4] (for running ADVI)
-
-The versions used were: NumPy 1.14.5, SciPy 1.1.0, Matplotlib 2.2.2, PyStan 2.17.1.0, CmdStan 2.12.0. The tool has been tested in Linux environment.
 
 ## References
 
