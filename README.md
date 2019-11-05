@@ -21,7 +21,7 @@ LuxUS-HS is a tool for differential methylation analysis, which combines binomia
 The versions used were: NumPy 1.17.0, SciPy 1.3.0, Matplotlib 3.1.1, PyStan 2.19.0.0, CmdStan 2.20.0. The tool has been tested in Linux environment.
 
 ## Simulating data from the LuxUS-HS model
-The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The arguments for the script are:
+The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The script supports fixed effect with intercept and case/control indicator variable. The arguments for the script are:
 
 ```
 usage: generate_data_from_LuxUS_HS.py [-h] -q READS -r REPLICATES -c
@@ -98,7 +98,7 @@ optional arguments:
 ```
 
 ## Running LuxUS-HS analysis
-LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh*. The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files with specified file name identifier. The arguments for the script are
+LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh* (which shows example of running LuxUS-HS for a simulated data set). The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files with specified file name identifier. The arguments for the script are
 ```
 usage: run_LuxUS_HS.py [-h] [-a ALGORITHM] [-p DIAGNOSTIC_PLOTS]
                        [-g N_GRADSAMPLES] [-e N_ELBOSAMPLES]
@@ -168,14 +168,14 @@ optional arguments:
 ```
 
 ## LuxUS-HS analysis workflow
-The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting from raw data) is following:
+The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting from raw sequencing data) is following:
 * Align reads to a reference genome.
 * Transform the aligned reads to count data.
 * Estimate the experimental parameters such as bisulfite conversion efficiency if spike-in samples are available
 * Run preanalysis step to get genomic windows with F-test p-value below the desired threshold (script *prepare_data_for_LuxUS_HS.py*).
-* Run LuxUS-HS analysis for each chosen genomic window, this step is parallelizable (script ).
+* Run LuxUS-HS analysis for each chosen genomic window, this step is parallelizable (script *run_LuxUS_HS.sh*).
 * Set BF threshold to determine DMR, possibly combine DMRs and filter them further.
-* Investigation of estimated indicator variable d.
+* Investigation of estimated indicator variable **d**.
 
 The preanalysis step and its parameters are explained in detail in https://github.com/hallav/LuxUS
 
