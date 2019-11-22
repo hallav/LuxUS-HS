@@ -1,12 +1,12 @@
-# LuxUS-HS
+# LuxHS
 
-LuxUS-HS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure includes indicator variables, which tell whether a cytosine (in the genomic window of interest) follows the same spatial correlation pattern as its neighboring cytosines. The statistical testing is done for each cytosine separately. The observation model and the statistical testing method are the same as in LuxGLM [1]. The preprocessing step used for LuxUS-HS is the same as in LuxUS [5].  
+LuxHS is a tool for differential methylation analysis, which combines binomial observation model with a GLMM with spatial correlation structure. The spatial correlation structure includes indicator variables, which tell whether a cytosine (in the genomic window of interest) follows the same spatial correlation pattern as its neighboring cytosines. The statistical testing is done for each cytosine separately. The observation model and the statistical testing method are the same as in LuxGLM [1]. The preprocessing step used for LuxHS is the same as in LuxUS [5].  
 
 ## Outline
 * Requirements
-* Simulating data from the LuxUS-HS model
-* Running LuxUS-HS analysis
-* LuxUS-HS analysis workflow
+* Simulating data from the LuxHS model
+* Running LuxHS analysis
+* LuxHS analysis workflow
 * Producing results for *title*
 * References
 
@@ -20,8 +20,8 @@ LuxUS-HS is a tool for differential methylation analysis, which combines binomia
 
 The versions used were: NumPy 1.17.0, SciPy 1.3.0, Matplotlib 3.1.1, PyStan 2.19.0.0, CmdStan 2.20.0. The tool has been tested in Linux environment.
 
-## Simulating data from the LuxUS-HS model
-The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxUS-HS model. The script supports fixed effect with intercept and case/control indicator variable. The arguments for the script are:
+## Simulating data from the LuxHS model
+The script *generate_data_from_LuxUS_HS.py* (called by *run_generate_data_from_LuxUS_HS.sh*) can be used to generate data from LuxHS model. The script supports fixed effect with intercept and case/control indicator variable. The arguments for the script are:
 
 ```
 usage: generate_data_from_LuxUS_HS.py [-h] -q READS -r REPLICATES -c
@@ -97,8 +97,8 @@ optional arguments:
 
 ```
 
-## Running LuxUS-HS analysis
-LuxUS-HS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh* (which shows example of running LuxUS-HS for a simulated data set). The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files with specified file name identifier. The arguments for the script are
+## Running LuxHS analysis
+LuxHS analysis can be run with script *run_LuxUS_HS.py*, which is called by script *run_LuxUS_HS.sh* (which shows example of running LuxHS for a simulated data set). The script depends on the Stan model files *luxus_HS.stan* and *luxus_1cytosine.stan* (they have to be stored in the same folder as this script, and when using ADVI the model has to be compiled with CmdStan beforehand) and *savagedickey.py*. The script writes the calculated Bayes factors for each cytosine in the defined output file. The means of the samples for the methylation proportions and indicator variable **d**s will be written in files with specified file name identifier. The arguments for the script are
 ```
 usage: run_LuxUS_HS.py [-h] [-a ALGORITHM] [-p DIAGNOSTIC_PLOTS]
                        [-g N_GRADSAMPLES] [-e N_ELBOSAMPLES]
@@ -167,21 +167,21 @@ optional arguments:
                         File identifier for the d and theta mean files.
 ```
 
-## LuxUS-HS analysis workflow
-The LuxUS-HS analysis workflow for a bisulfite sequencing data set (starting from raw sequencing data) is following:
+## LuxHS analysis workflow
+The LuxHS analysis workflow for a bisulfite sequencing data set (starting from raw sequencing data) is following:
 * Align reads to a reference genome.
 * Transform the aligned reads to count data.
 * Estimate the experimental parameters such as bisulfite conversion efficiency if spike-in samples are available
 * Run preanalysis step to get genomic windows with F-test p-value below the desired threshold (script *prepare_data_for_LuxUS_HS.py*).
-* Run LuxUS-HS analysis for each chosen genomic window, this step is parallelizable (script *run_LuxUS_HS.sh*).
+* Run LuxHS analysis for each chosen genomic window, this step is parallelizable (script *run_LuxUS_HS.sh*).
 * Set BF threshold to determine DMR, possibly combine DMRs and filter them further.
 * Investigation of estimated indicator variable **d**.
 
 The preanalysis step and its parameters are explained in detail in https://github.com/hallav/LuxUS
 
-## Producing results for *LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states*
+## Producing results for *LuxHS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states*
 
-The scripts for producing the results presented in *LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states* by Halla-aho and Lähdesmäki [9] are available in this repository. The scripts for running BiSeq [6] and RADMeth [7] tools for simulation comparisons and scripts for preparing the colon cancer data set [8] for LuxUS-HS analysis are also included.
+The scripts for producing the results presented in *LuxHS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states* by Halla-aho and Lähdesmäki [9] are available in this repository. The scripts for running BiSeq [6] and RADMeth [7] tools for simulation comparisons and scripts for preparing the colon cancer data set [8] for LuxHS analysis are also included.
 
 ## References
 
@@ -201,4 +201,4 @@ The scripts for producing the results presented in *LuxUS-HS: spatial correlatio
 
 [8] Hansen, K. D. (2016) bsseqData: Example whole genome bisulfite data for the bsseq package. 
 
-[9] Halla-aho, V. and Lähdesmäki, H. (2019) LuxUS-HS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states. 
+[9] Halla-aho, V. and Lähdesmäki, H. (2019) LuxHS: DNA methylation analysis with spatially varying correlation structure.
