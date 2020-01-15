@@ -7,7 +7,7 @@ LuxHS is a tool for differential methylation analysis, which combines binomial o
 * Simulating data from the LuxHS model
 * Running LuxHS analysis
 * LuxHS analysis workflow
-* Producing results for *title*
+* Producing results for *LuxHS: LuxHS: DNA methylation analysis with spatially varying correlation structure*
 * References
 
 ## Requirements
