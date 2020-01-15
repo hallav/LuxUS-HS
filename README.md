@@ -7,7 +7,7 @@ LuxHS is a tool for differential methylation analysis, which combines binomial o
 * Simulating data from the LuxHS model
 * Running LuxHS analysis
 * LuxHS analysis workflow
-* Producing results for *LuxHS: LuxHS: DNA methylation analysis with spatially varying correlation structure*
+* Producing results for *LuxHS: DNA methylation analysis with spatially varying correlation structure*
 * References
 
 ## Requirements
@@ -179,7 +179,7 @@ The LuxHS analysis workflow for a bisulfite sequencing data set (starting from r
 
 The preanalysis step and its parameters are explained in detail in https://github.com/hallav/LuxUS
 
-## Producing results for *LuxHS: LuxHS: DNA methylation analysis with spatially varying correlation structure*
+## Producing results for *LuxHS: DNA methylation analysis with spatially varying correlation structure*
 
 The scripts for producing the results presented in *LuxHS: spatial correlation structure with horseshoe prior enables analysis of cytosines with deviating methylation states* by Halla-aho and Lähdesmäki [9] are available in this repository. The scripts for running BiSeq [6] and RADMeth [7] tools for simulation comparisons and scripts for preparing the colon cancer data set [8] for LuxHS analysis are also included.
 
