@@ -193,7 +193,7 @@ The scripts for producing the results presented in *LuxHS: spatial correlation s
 
 [4] Stan Development Team (2017) PyStan: the Python interface to Stan, Version 2.16.0.0.   http://mc-stan.org
 
-[5] Halla-aho, V. and Lähdesmäki, H. (2019) LuxUS: Detecting differential DNA methylation using generalized linear mixed model with spatial correlation structure. doi: https://doi.org/10.1101/536722
+[5] Halla-aho, V. and Lähdesmäki, H. (2020) LuxUS: DNA methylation analysis using generalized linear mixed model with spatial correlation. *Bioinformatics*, Volume 36, Issue 17, Pages 4535–4543, https://doi.org/10.1093/bioinformatics/btaa539
 
 [6] Hebestreit, K., Dugas, M. and Klein, H-U. (2013) Detection of significantly differentially methylated regions in targeted bisulfite sequencing data. Bioinformatics, 29(13):1647–1653
 
@@ -201,4 +201,4 @@ The scripts for producing the results presented in *LuxHS: spatial correlation s
 
 [8] Hansen, K. D. (2016) bsseqData: Example whole genome bisulfite data for the bsseq package. 
 
-[9] Halla-aho, V. and Lähdesmäki, H. (2019) LuxHS: DNA methylation analysis with spatially varying correlation structure.
+[9] Halla-aho V., Lähdesmäki H. (2020) LuxHS: DNA Methylation Analysis with Spatially Varying Correlation Structure. *Lecture Notes in Computer Science*, vol 12108. Springer, Cham. https://doi.org/10.1007/978-3-030-45385-5_45
